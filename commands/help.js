@@ -1,16 +1,19 @@
+const fs = require('fs');
+
 module.exports = {
     name: 'help',
-    description: "lists commands",
+    description: "Lists commands",
     execute(message, args, Discord) {
         const embed = new Discord.MessageEmbed()
         .setColor('#66bc6a')
         .setTitle('Commands:')
         .setDescription(`My prefix is **${process.env.PREFIX}**`)
-        .addFields(
-            { name: 'help', value: 'Sends this message'},
-            { name: 'ping', value: 'Check if I am online'},
-            { name: 'userinfo', value: 'Returns basic info about a user'}
-        )
+
+        const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+        for (const file of commandFiles) {
+            const command = require(`./${file}`)
+            embed.addFields({ name: `${command.name}`, value: `${command.description}`})
+        }
         message.channel.send({ embeds: [embed] });
     }
 }

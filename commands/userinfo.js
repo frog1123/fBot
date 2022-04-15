@@ -2,7 +2,7 @@ const moment = require("moment")
 
 module.exports = {
     name: 'userinfo',
-    description: "The bot will return the info about the user",
+    description: "Return basic info about the user",
     execute(message, args, Discord){
         let user = message.mentions.users.first() || message.author
 
