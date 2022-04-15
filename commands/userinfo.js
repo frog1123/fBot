@@ -4,10 +4,10 @@ module.exports = {
     name: 'userinfo',
     description: "The bot will return the info about the user",
     execute(message, args, Discord){
-        let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.author
+        let user = message.mentions.users.first() || message.author
 
         const embed = new Discord.MessageEmbed()
-        .setColor('#DAF7A6')
+        .setColor('#66bc6a')
         .setAuthor(`${user.tag}`, user.displayAvatarURL())
         .addFields(
             {
@@ -24,13 +24,20 @@ module.exports = {
         .addFields(
             {
                 name: 'Joined server',
-                value: `${moment(user.joinedAt).format("LLLL")}`
+                value: 'doesnt work'
+                // value: `${moment(message.mentions.members.first() || message.author.joinedAt).format("LLLL")}`
             }
         )
         .addFields(
             {
-                name: 'Joined Discord',
+                name: 'Account Created',
                 value: `${user.createdAt}`
+            }
+        )
+        .addFields(
+            {
+                name: 'Requested By',
+                value: `${message.author}`
             }
         )
         message.channel.send({ embeds: [embed] })
