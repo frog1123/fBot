@@ -16,7 +16,7 @@ for (const file of commandFiles){
 client.once('ready', () => {
     console.log('fBot is online!');
     client.user.setPresence({ status: 'idle' });
-    client.user.setActivity(`${prefix}help`, { type: 'LISTENING' });
+    client.user.setActivity(`over ${client.guilds.cache.size} server${client.guilds.cache.size > 1 ? "s" : ""}`, { type: "WATCHING" });
 });
 
 client.on('messageCreate', message => {
