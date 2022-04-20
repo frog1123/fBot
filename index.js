@@ -1,10 +1,12 @@
 const Discord = require('discord.js');
 const { Client, Intents } = require('discord.js');
 
-require('dotenv').config();
+const os = require('os');
+const osutils = require('os-utils');
 const fs = require('fs');
 const chalk = require('chalk');
 
+require('dotenv').config();
 const config = require('./config.json');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
@@ -21,10 +23,18 @@ for (const file of commandFiles) {
 }
 client.once('ready', () => {
     console.log(`fBot is ${color('online')}`);
-    console.log(`Loaded in ${color(client.guilds.cache.size)} server${client.guilds.cache.size > 1 ? "s" : ""}`)
+    console.log(`Loaded in ${color(client.guilds.cache.size)} server${client.guilds.cache.size > 1 ? "s" : ""}`);
+
+    osutils.cpuUsage(v => {
+        console.log('-----------------------------------------------------');
+        console.log(`Platform: ${color(osutils.platform())}`);
+        console.log(`CPU Usage: ${color(`${((v * 100).toFixed(2))}%`)} (${color(os.cpus()[0].model)})`);
+        console.log(`RAM Usage: ${color(osutils.freemem())}  / ${color(osutils.totalmem())} (${color(`${(100 - osutils.freememPercentage() * 100).toFixed(2)}%`)})`);
+        console.log('-----------------------------------------------------');
+    });
 
     client.user.setPresence({ status: 'idle' });
-    client.user.setActivity(`over ${client.guilds.cache.size} server${client.guilds.cache.size > 1 ? "s" : ""}`, { type: "WATCHING" });
+    client.user.setActivity(`${client.guilds.cache.size} server${client.guilds.cache.size > 1 ? "s" : ""}`, { type: "WATCHING" });
 });
 
 client.on('messageCreate', message => {
@@ -34,7 +44,7 @@ client.on('messageCreate', message => {
     const command = args.shift().toLowerCase().split(" ");
 
     if (typeof client.commands.get(command[0]) !== 'undefined') {
-        client.commands.get(command[0]).execute(message, args, Discord);
+        client.commands.get(command[0]).execute(message, args, Discord, client);
     }
 });
 
