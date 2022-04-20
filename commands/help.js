@@ -1,7 +1,7 @@
 const fs = require('fs');
-const config = require('../config.json');
-
 const ping = require('./ping');
+
+const config = require('../config.json');
 
 module.exports = {
     name: 'help',

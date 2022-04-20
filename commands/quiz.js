@@ -3,7 +3,7 @@ const config = require('../config.json');
 module.exports = {
     name: 'quiz',
     description: 'Test your knowledge',
-    execute(message, args, Discord, client) {
+    execute(message, args, Discord) {
         function randomNum(min, max) { 
             return Math.round(Math.random() * (max - min) + min);
         };
@@ -13,7 +13,7 @@ module.exports = {
             ['What is 2+2?', '3', '7', 'OVER 9000!!!', '4', '4'],
             ['Who is the impostor?', 'ur mom', 'idk', 'deez', 'red', 'red']
         ];
-        const question = questions[randomNum(0, questions.length - 1)];
+        const question = questions[randomNum(0, questions.length)];
         const answer = question[5];
 
         const embed = new Discord.MessageEmbed().setTitle(question[0]).setColor(config.color);

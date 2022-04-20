@@ -7,6 +7,8 @@ const fs = require('fs');
 const chalk = require('chalk');
 
 require('dotenv').config();
+const { setInterval } = require('timers/promises');
+
 const config = require('./config.json');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
@@ -36,6 +38,10 @@ client.once('ready', () => {
     client.user.setPresence({ status: 'idle' });
     client.user.setActivity(`${client.guilds.cache.size} server${client.guilds.cache.size > 1 ? "s" : ""}`, { type: "WATCHING" });
 });
+
+setInterval(
+    () => client.user.setActivity(`${client.guilds.cache.size} server${client.guilds.cache.size > 1 ? "s" : ""}`, { type: "WATCHING" })    
+, 300000);
 
 client.on('messageCreate', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
