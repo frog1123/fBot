@@ -1,3 +1,3 @@
 # fBot
 
-project for playing with discord.js
+project for playing around with discord.js
