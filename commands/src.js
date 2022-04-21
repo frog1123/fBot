@@ -8,7 +8,7 @@ module.exports = {
     name: 'src',
     description: 'View contents of a webpage',
     async execute(message, args, Discord) {
-        await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
+        await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
             if (validurl.isUri(args.toString())) {
                 const page = await browser.newPage();
                 const response = await page.goto(args.toString());
