@@ -7,11 +7,12 @@ const chalk = require('chalk');
 const config = require('./config.json');
 
 const color = chalk.bold.hex(config.color);
+const PORT = process.env.PORT || 9000
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static('public'));
 
 app.get("/", function (req, res) {
-    res.send("Bot online")
+    res.sendFile(path.join(__dirname,'index.html'))
 });
 
-app.listen(process.env.PORT || 9000, () => console.log("Server online"));
+app.listen(PORT, () => console.log(`Server online on port ${color(PORT)}`));
