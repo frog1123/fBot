@@ -4,5 +4,3 @@
 .env.example
 .env.local
 .env.staging
-
-/puppeteer
