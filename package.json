@@ -13,8 +13,10 @@
     "chalk": "^4.1.2",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
+    "express": "^4.17.3",
     "moment": "^2.29.2",
     "os-utils": "^0.0.14",
+    "path": "^0.12.7",
     "puppeteer": "^13.6.0",
     "valid-url": "^1.0.9"
   }
