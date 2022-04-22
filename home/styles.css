@@ -1,0 +1,30 @@
+h1, h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    margin: 0;
+}
+button {
+    cursor: pointer;
+}
+#main-content {
+    width: 100%;
+    text-align:center;
+}
+#main-content * {
+    margin: auto;
+}
+#inv-btn {
+    width: 320px;
+    height: 80px;
+    justify-self: center;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+#inv-btn:hover {
+    background-color: #439a43;
+}
+#inv-btn h2 {
+    font-size: 1.5rem;
+}

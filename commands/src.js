@@ -23,7 +23,7 @@ module.exports = {
                     content: 'Waiting...'
                 }).then(msg => {
                     const ping = msg.createdTimestamp - message.createdTimestamp;
-                    msg.edit(`Took ${ping}ms`);
+                    msg.edit(`Content of ${args} (took ${ping}ms)`);
                 })
                 browser.close();
             }

@@ -1,5 +1,5 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 
 const path = require('path');
 const chalk = require('chalk');
@@ -7,12 +7,12 @@ const chalk = require('chalk');
 const config = require('./config.json');
 
 const color = chalk.bold.hex(config.color);
-const PORT = process.env.PORT || 9000
+const PORT = process.env.PORT || 9000;
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'home')));
 
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname,'index.html'))
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname,'home', 'index.html'));
 });
 
 app.listen(PORT, () => console.log(`Server online on port ${color(PORT)}`));
