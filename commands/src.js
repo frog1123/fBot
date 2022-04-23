@@ -24,9 +24,8 @@ module.exports = {
                 }).then(msg => {
                     const ping = msg.createdTimestamp - message.createdTimestamp;
                     msg.edit(`Content of ${args} (took ${ping}ms)`);
-                })
+                }).then(() => fs.writeFileSync('puppeteer/text.txt', ''));
                 browser.close();
-                fs.writeFileSync('puppeteer/text.txt', '');
             }
             else {
                 message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(config.color).setTitle('Provide a valid URL')]});
