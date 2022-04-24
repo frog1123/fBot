@@ -1,17 +1,15 @@
 const Discord = require('discord.js');
-const { Client, Intents } = require('discord.js');
 
 const os = require('os');
 const osutils = require('os-utils');
 const fs = require('fs');
 const chalk = require('chalk');
-
-require('dotenv').config();
 const { setInterval } = require('timers/promises');
 
+require('dotenv').config();
 const config = require('./config.json');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_MEMBERS] });
 const prefix = process.env.PREFIX;
 
 client.commands = new Discord.Collection();

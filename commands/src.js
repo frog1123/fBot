@@ -9,7 +9,7 @@ module.exports = {
     description: 'View contents of a webpage',
     async execute(message, args, Discord) {
         await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
-            if (validurl.isUri(args.toString())) {
+            try {
                 const page = await browser.newPage();
                 const response = await page.goto(args.toString());
                 src = await response.text();
@@ -27,9 +27,9 @@ module.exports = {
                 }).then(() => fs.writeFileSync('puppeteer/text.txt', ''));
                 browser.close();
             }
-            else {
+            catch(e) {
                 message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(config.color).setTitle('Provide a valid URL')]});
-            };
+            }
         });
     }
 }
