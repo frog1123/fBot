@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const validurl = require('valid-url');
 
 const config = require('../config.json')
 
