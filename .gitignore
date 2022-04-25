@@ -1,5 +1,9 @@
 /node_modules
 
+# remove for heroku
+config.json
+
+
 .env
 .env.example
 .env.local
