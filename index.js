@@ -8,7 +8,11 @@ const { setInterval } = require('timers/promises');
 
 const config = require('./config.json');
 
-loadBot(0)
+config.bots.forEach(
+    (index, arr) => {
+        loadBot(arr);
+});
+
 
 function loadBot(bot) {
     const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_MEMBERS] });
@@ -52,9 +56,10 @@ function loadBot(bot) {
         const command = args.shift().toLowerCase().split(" ")[0];
 
         if (typeof client.commands.get(command) !== 'undefined') {
-            client.commands.get(command).execute(message, args, Discord, client);
+            client.commands.get(command).execute(message, args, Discord, client, bot);
         }
     });
 
+    
     client.login(config.bots[bot].token);   
 };

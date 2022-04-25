@@ -6,7 +6,7 @@ const config = require('../config.json')
 module.exports = {
     name: 'src',
     description: 'View contents of a webpage',
-    async execute(message, args, Discord) {
+    async execute(message, args, Discord, client, bot) {
         await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
             try {
                 const page = await browser.newPage();
@@ -27,7 +27,7 @@ module.exports = {
                 browser.close();
             }
             catch(e) {
-                message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(config.color).setTitle('Provide a valid URL')]});
+                message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(config.bots[bot].color).setTitle('Provide a valid URL')]});
             }
         });
     }

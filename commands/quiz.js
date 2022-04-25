@@ -3,7 +3,7 @@ const config = require('../config.json');
 module.exports = {
     name: 'quiz',
     description: 'Test your knowledge',
-    execute(message, args, Discord) {
+    execute(message, args, Discord, client, bot) {
         function randomNum(min, max) { 
             return Math.round(Math.random() * (max - min) + min);
         };
@@ -14,17 +14,17 @@ module.exports = {
             ['Who is the impostor?', 'ur mom', 'idk', 'deez', 'red', 'red']
         ];
         const question = questions[randomNum(0, questions.length)];
-        const answer = question[5];
+        const answer = questions[5];
 
-        const embed = new Discord.MessageEmbed().setTitle(question[0]).setColor(config.color);
+        const embed = new Discord.MessageEmbed().setTitle(question[0]).setColor(config.bots[bot].color);
 
         let arr = [1, 2, 3, 4].sort(() => Math.random() - 0.5);
 
         const btns = new Discord.MessageActionRow()
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[0]}`).setLabel(question[arr[0]]).setStyle(config.bots[0].btntype))
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[1]}`).setLabel(question[arr[1]]).setStyle(config.bots[0].btntype))
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[2]}`).setLabel(question[arr[2]]).setStyle(config.bots[0].btntype))
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[3]}`).setLabel(question[arr[3]]).setStyle(config.bots[0].btntype));
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[0]}`).setLabel(question[arr[0]]).setStyle(config.bots[bot].btntype))
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[1]}`).setLabel(question[arr[1]]).setStyle(config.bots[bot].btntype))
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[2]}`).setLabel(question[arr[2]]).setStyle(config.bots[bot].btntype))
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[3]}`).setLabel(question[arr[3]]).setStyle(config.bots[bot].btntype));
 
         message.channel.send({ embeds: [embed], components: [btns] });
 
