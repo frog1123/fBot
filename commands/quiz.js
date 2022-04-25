@@ -21,10 +21,10 @@ module.exports = {
         let arr = [1, 2, 3, 4].sort(() => Math.random() - 0.5);
 
         const btns = new Discord.MessageActionRow()
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[0]}`).setLabel(question[arr[0]]).setStyle(config.btntype))
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[1]}`).setLabel(question[arr[1]]).setStyle(config.btntype))
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[2]}`).setLabel(question[arr[2]]).setStyle(config.btntype))
-        .addComponents(new Discord.MessageButton().setCustomId(`${arr[3]}`).setLabel(question[arr[3]]).setStyle(config.btntype));
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[0]}`).setLabel(question[arr[0]]).setStyle(config.bots[0].btntype))
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[1]}`).setLabel(question[arr[1]]).setStyle(config.bots[0].btntype))
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[2]}`).setLabel(question[arr[2]]).setStyle(config.bots[0].btntype))
+        .addComponents(new Discord.MessageButton().setCustomId(`${arr[3]}`).setLabel(question[arr[3]]).setStyle(config.bots[0].btntype));
 
         message.channel.send({ embeds: [embed], components: [btns] });
 
