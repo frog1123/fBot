@@ -1,0 +1,19 @@
+{
+    "master": ["661346255238070273", "753429469972398154", "792969854918328320"],
+    "bots": [
+        {
+            "name": "fBot",
+            "token": "OTY0MzEwODE5NTczNzM1NDg0.Yliybw.H79nkDbbbF0Du39QzU39gN3wvc8",
+            "prefix": "f!",
+            "color": "#66bc6a",
+            "btntype": "SUCCESS"
+        },
+        {
+            "name": "zBot",
+            "token": "OTY4MjQ0Mjc2MDQ5ODc5MDQw.YmcBwA.joOTt1brQ1eBZM3r95jtXPZjKkM",
+            "prefix": "z!",
+            "color": "#faa61a",
+            "btntype": "SECONDARY"
+        }
+    ]
+}

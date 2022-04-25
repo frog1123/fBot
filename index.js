@@ -30,7 +30,7 @@ function loadBot(bot) {
     console.log(`Commands loaded: ${color((commandFiles.toString().replace(/.js/g, '')).replace(/,/g, chalk.hex('#fff')(', ')))}`);
 
     client.once('ready', () => {
-        console.log(`fBot is ${color('online')}`);
+        console.log(`${color(config.bots[bot].name)} is online`);
         console.log(`Loaded in ${color(client.guilds.cache.size)} server${client.guilds.cache.size > 1 ? "s" : ""}`);
 
         osutils.cpuUsage(v => {
@@ -60,6 +60,5 @@ function loadBot(bot) {
         }
     });
 
-    
     client.login(config.bots[bot].token);   
 };
