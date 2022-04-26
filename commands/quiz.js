@@ -1,9 +1,11 @@
-const config = require('../config.json');
+const config = JSON.parse(process.env.CONFIG);
 
 module.exports = {
     name: 'quiz',
     description: 'Test your knowledge',
     execute(message, args, Discord, client, bot) {
+        const color = `#${config.bots[bot].color}`
+
         function randomNum(min, max) { 
             return Math.round(Math.random() * (max - min) + min);
         };
@@ -14,9 +16,9 @@ module.exports = {
             ['Who is the impostor?', 'ur mom', 'idk', 'deez', 'red', 'red']
         ];
         const question = questions[randomNum(0, questions.length)];
-        const answer = questions[5];
+        const answer = question[5];
 
-        const embed = new Discord.MessageEmbed().setTitle(question[0]).setColor(config.bots[bot].color);
+        const embed = new Discord.MessageEmbed().setTitle(question[0]).setColor(color);
 
         let arr = [1, 2, 3, 4].sort(() => Math.random() - 0.5);
 

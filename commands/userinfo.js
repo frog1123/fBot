@@ -1,16 +1,18 @@
 const moment = require("moment");
 
-const config = require('../config.json');
+const config = JSON.parse(process.env.CONFIG);
 
 module.exports = {
     name: 'userinfo',
     description: 'Return basic info about the user, accepts mention as argument',
-    execute(message, args, Discord) {
+    execute(message, args, Discord, client, bot) {
+        const color = `#${config.bots[bot].color}`
+
         let user = message.mentions.users.first() || message.author;
         let serverJoinTime = typeof message.mentions.members.first() === 'undefined' ? message.guild.members.cache.get(message.author.id).joinedTimestamp : message.mentions.members.first().joinedTimestamp;
 
         const embed = new Discord.MessageEmbed()
-        .setColor(config.color)
+        .setColor(color)
         .setAuthor(`${user.tag}`, user.displayAvatarURL())
         .setThumbnail(user.displayAvatarURL())
         .addFields(

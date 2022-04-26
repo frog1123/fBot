@@ -1,16 +1,18 @@
 const fs = require('fs');
 const ping = require('./ping');
 
-const config = require('../config.json');
+const config = JSON.parse(process.env.CONFIG);
 
 module.exports = {
     name: 'help',
     description: 'Lists commands',
-    execute(message, args, Discord) {
+    execute(message, args, Discord, client, bot) {
+        const color = `#${config.bots[bot].color}`
+
         const embed = new Discord.MessageEmbed()
-        .setColor(config.color)
+        .setColor(color)
         .setTitle('Commands:')
-        .setDescription(`My prefix is **${process.env.PREFIX}**`)
+        .setDescription(`My prefix is **${config.bots[bot].prefix}**`)
         .addFields({ name: `${this.name}`, value: `${this.description}`})
         .addFields({ name: `${ping.name}`, value: `${ping.description}`});
 

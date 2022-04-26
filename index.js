@@ -6,12 +6,15 @@ const fs = require('fs');
 const chalk = require('chalk');
 const { setInterval } = require('timers/promises');
 
-const config = require('./config.json');
+require('dotenv').config();
+const config = JSON.parse(process.env.CONFIG);
 
 config.bots.forEach(
     (index, arr) => {
         loadBot(arr);
 });
+
+console.log(JSON.parse(process.env.CONFIG))
 
 
 function loadBot(bot) {
@@ -20,7 +23,7 @@ function loadBot(bot) {
 
     client.commands = new Discord.Collection();
 
-    const color = chalk.hex(config.bots[bot].color);
+    const color = chalk.hex(`#${config.bots[bot].color}`);
 
     const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
@@ -60,5 +63,6 @@ function loadBot(bot) {
         }
     });
 
-    client.login(config.bots[bot].token);   
+    
+    client.login(config.bots[bot].token);
 };
