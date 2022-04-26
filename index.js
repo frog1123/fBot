@@ -14,8 +14,6 @@ config.bots.forEach(
         loadBot(arr);
 });
 
-console.log(JSON.parse(process.env.CONFIG))
-
 
 function loadBot(bot) {
     const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_MEMBERS] });
@@ -63,6 +61,6 @@ function loadBot(bot) {
         }
     });
 
-    
+
     client.login(config.bots[bot].token);
 };
