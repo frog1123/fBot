@@ -4,9 +4,6 @@ const app = express();
 const path = require('path');
 const chalk = require('chalk');
 
-const config = require('./config.json');
-
-const color = chalk.bold.hex(config.color);
 const PORT = process.env.PORT || 9000;
 
 app.use(express.static(path.join(__dirname, 'web')));
@@ -15,4 +12,4 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'web', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Server online on port ${color(PORT)}`));
+app.listen(PORT, () => console.log(`Server online on port ${PORT}`));
