@@ -4,7 +4,9 @@ const app = express();
 const path = require('path');
 const chalk = require('chalk');
 
-const PORT = process.env.PORT || 9000;
+require('dotenv').config();
+
+const PORT = process.env.PORT ?? 9000;
 
 app.use(express.static(path.join(__dirname, 'web')));
 
