@@ -12,9 +12,13 @@ module.exports = {
         else if (msg.length === 0) {
             message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(config.bots[bot].color).setTitle('Provide a message to DM')]});
         }
-        else if (config.master.forEach(item => {
-            if (typeof user !== 'undefined' && user.id === item) message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(color).setTitle('You cannot DM this user')]});
+        else if (config.master.every(item => {
+            if (typeof user !== 'undefined' && user.id === item) {
+                message.channel.send({ embeds: [new Discord.MessageEmbed().setColor(color).setTitle('You cannot DM this user')]})
+            }
+            else {
+                user.send(msg);
+            }
         }));
-        else if (user.id !== config.master && msg.length !== 0) user.send(msg);
     }
 }
