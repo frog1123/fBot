@@ -42,7 +42,7 @@ function loadBot(bot) {
             console.log('-----------------------------------------------------');
         });
 
-        client.user.setPresence({ status: 'idle' });
+        client.user.setPresence({ status: config.bots[bot].status });
         client.user.setActivity(`${client.guilds.cache.size} server${client.guilds.cache.size > 1 ? "s" : ""}`, { type: "WATCHING" });
     });
 
