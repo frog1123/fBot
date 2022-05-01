@@ -7,7 +7,7 @@ module.exports = {
     name: 'src',
     description: 'View contents of a webpage',
     async execute(message, args, Discord, client, bot) {
-        const color = `#${config.bots[bot].color}`
+        const color = `#${config.bots[bot].color}`;
 
         await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
             try {
@@ -24,7 +24,7 @@ module.exports = {
                     content: 'Waiting...'
                 }).then(msg => {
                     const ping = msg.createdTimestamp - message.createdTimestamp;
-                    msg.edit(`Content of ${args} (took ${ping}ms)`);
+                    msg.edit(`Content of <${args}> (took ${ping}ms)`);
                 }).then(() => fs.writeFileSync('puppeteer/text.txt', ''));
                 browser.close();
             }
